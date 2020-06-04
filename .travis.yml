@@ -72,6 +72,22 @@ matrix:
         apt:
           sources: {}
           packages: {}
+    - os: linux
+      arch: arm64
+      services:
+        - docker
+      dist: bionic
+      sudo: true
+      language: c
+      compiler: gcc
+      env: DOCKER_BUILD=1
+      script: |
+        echo "===== BUILD DOCKER IMAGE ======="
+        docker build -t test-image -f Dockerfile .
+      addons:
+        apt:
+          sources: {}
+          packages: {}
 
 script: |
   echo "CC = $CC, CXX = $CXX"
